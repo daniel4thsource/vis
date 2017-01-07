@@ -14,11 +14,11 @@ var argv = require('yargs').argv;
 var ENTRY             = './index.js';
 var HEADER            = './lib/header.js';
 var DIST              = './dist';
-var VIS_JS            = 'vis.js';
-var VIS_MAP           = 'vis.map';
-var VIS_MIN_JS        = 'vis.min.js';
-var VIS_CSS           = 'vis.css';
-var VIS_MIN_CSS       = 'vis.min.css';
+var VIS_JS            = 'vis-4th.js';
+var VIS_MAP           = 'vis-4th.map';
+var VIS_MIN_JS        = 'vis-4th.min.js';
+var VIS_CSS           = 'vis-4th.css';
+var VIS_MIN_CSS       = 'vis-4th.min.css';
 var INDIVIDUAL_JS_BUNDLES = [
   {entry: './index-timeline-graph2d.js', filename: 'vis-timeline-graph2d.min.js'},
   {entry: './index-network.js', filename: 'vis-network.min.js'},

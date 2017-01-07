@@ -4,8 +4,8 @@
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 4.17.0
- * @date    2017-01-06
+ * @version 4.17.2
+ * @date    2017-01-07
  *
  * @license
  * Copyright (C) 2011-2016 Almende B.V, http://almende.com
@@ -44627,6 +44627,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
         this._temporaryBindUI('onDragStart', function () {});
         this._temporaryBindUI('onHold', function () {});
+      }
+
+      /**
+       * create the toolbar to connect nodes
+       */
+
+    }, {
+      key: 'addEdgeModeWithSelectedNode',
+      value: function addEdgeModeWithSelectedNode(event) {
+        // when using the gui, enable edit mode if it wasnt already.
+        if (this.editMode !== true) {
+          this.enableEditMode();
+        }
+
+        // restore the state of any bound functions or events, remove control nodes, restore physics
+        this._clean();
+
+        this.inMode = 'addEdge';
+        if (this.guiEnabled === true) {
+          var locale = this.options.locales[this.options.locale];
+          this.manipulationDOM = {};
+          this._createBackButton(locale);
+          this._createSeperator();
+          this._createDescription(locale['edgeDescription'] || this.options.locales['en']['edgeDescription']);
+
+          // bind the close button
+          this._bindHammerToDiv(this.closeDiv, this.toggleEditMode.bind(this));
+        }
+
+        // temporarily overload functions
+        //this._temporaryBindUI('onTouch',    this._handleConnect.bind(this));
+        this._temporaryBindUI('onDragEnd', this._finishConnect.bind(this));
+        this._temporaryBindUI('onDrag', this._dragControlNode.bind(this));
+        this._temporaryBindUI('onRelease', this._finishConnect.bind(this));
+
+        this._temporaryBindUI('onDragStart', function () {});
+        this._temporaryBindUI('onHold', function () {});
+
+        this._handleConnect(event);
       }
 
       /**
