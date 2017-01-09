@@ -1,16 +1,16 @@
 /**
- * vis.js
+ * vis-4th.js
  * https://github.com/almende/vis
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 4.17.3
+ * @version 4.17.6
  * @date    2017-01-09
  *
  * @license
  * Copyright (C) 2011-2016 Almende B.V, http://almende.com
  *
- * Vis.js is dual licensed under both
+ * Vis-4th.js is dual licensed under both
  *
  * * The Apache 2.0 License
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +20,7 @@
  * * The MIT License
  *   http://opensource.org/licenses/MIT
  *
- * Vis.js may be distributed under either license.
+ * Vis-4th.js may be distributed under either license.
  */
 
 "use strict";
@@ -31,9 +31,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["vis"] = factory();
+		exports["vis-4th"] = factory();
 	else
-		root["vis"] = factory();
+		root["vis-4th"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

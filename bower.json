@@ -1,12 +1,12 @@
 {
-  "name": "vis",
-  "main": ["dist/vis.js", "dist/vis.css"],
+  "name": "vis-4th",
+  "main": ["dist/vis-4th.js", "dist/vis-4th.css"],
   "description": "A dynamic, browser-based visualization library.",
   "homepage": "http://visjs.org/",
   "license": ["Apache-2.0", "MIT"],
   "repository": {
     "type": "git",
-    "url": "git://github.com/almende/vis.git"
+    "url": "git://github.com/daniel4thsource/vis.git"
   },
   "keywords": [
     "vis",

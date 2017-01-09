@@ -64,7 +64,7 @@ var webpackModule = {
 var webpackConfig = {
   entry: ENTRY,
   output: {
-    library: 'vis',
+    library: 'vis-4th',
     libraryTarget: 'umd',
     path: DIST,
     filename: VIS_JS,
@@ -132,7 +132,7 @@ gulp.task('bundle-js-individual', function (cb) {
     var webpackTimelineConfig = {
       entry: item.entry,
       output: {
-        library: 'vis',
+        library: 'vis-4th',
         libraryTarget: 'umd',
         path: DIST,
         filename: item.filename,
