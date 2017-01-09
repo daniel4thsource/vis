@@ -1,6 +1,6 @@
 {
   "name": "vis-4th",
-  "version": "4.17.4",
+  "version": "4.17.5",
   "description": "A dynamic, browser-based visualization library.",
   "homepage": "http://visjs.org/",
   "license": "(Apache-2.0 OR MIT)",
@@ -21,7 +21,7 @@
     "network",
     "browser"
   ],
-  "main": "./dist/vis-4th.js",
+  "main": "./dist/vis-4th",
   "scripts": {
     "test": "mocha",
     "build": "gulp",
