@@ -4,8 +4,8 @@
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 4.17.7
- * @date    2017-01-09
+ * @version 4.17.8
+ * @date    2017-01-23
  *
  * @license
  * Copyright (C) 2011-2016 Almende B.V, http://almende.com
@@ -44663,7 +44663,7 @@ return /******/ (function(modules) { // webpackBootstrap
         //this._temporaryBindUI('onTouch',    this._handleConnect.bind(this));
         this._temporaryBindUI('onDragEnd', this._finishConnect.bind(this));
         this._temporaryBindUI('onDrag', this._dragControlNode.bind(this));
-        this._temporaryBindUI('onRelease', this._finishConnect.bind(this));
+        this._temporaryBindUI('onRelease', this._finishConnectWithSelectedNode.bind(this));
 
         this._temporaryBindUI('onDragStart', function () {});
         this._temporaryBindUI('onHold', function () {});
@@ -45443,6 +45443,52 @@ return /******/ (function(modules) { // webpackBootstrap
             }
           }
         }
+        this.body.emitter.emit('_redraw');
+      }
+
+      /**
+       * Connect the new edge to the target if one exists, otherwise remove temp line and unselectAll
+       * @param event
+       * @private
+       */
+
+    }, {
+      key: '_finishConnectWithSelectedNode',
+      value: function _finishConnectWithSelectedNode(event) {
+        var pointer = this.body.functions.getPointer(event.center);
+        var pointerObj = this.selectionHandler._pointerToPositionObject(pointer);
+
+        // remember the edge id
+        var connectFromId = undefined;
+        if (this.temporaryIds.edges[0] !== undefined) {
+          connectFromId = this.body.edges[this.temporaryIds.edges[0]].fromId;
+        }
+
+        // get the overlapping node but NOT the temporary node;
+        var overlappingNodeIds = this.selectionHandler._getAllNodesOverlappingWith(pointerObj);
+        var node = undefined;
+        for (var i = overlappingNodeIds.length - 1; i >= 0; i--) {
+          // if the node id is NOT a temporary node, accept the node.
+          if (this.temporaryIds.nodes.indexOf(overlappingNodeIds[i]) === -1) {
+            node = this.body.nodes[overlappingNodeIds[i]];
+            break;
+          }
+        }
+
+        // clean temporary nodes and edges.
+        this._cleanupTemporaryNodesAndEdges();
+
+        // perform the connection
+        if (node !== undefined) {
+          if (node.isCluster === true) {
+            alert(this.options.locales[this.options.locale]['createEdgeError'] || this.options.locales['en']['createEdgeError']);
+          } else {
+            if (this.body.nodes[connectFromId] !== undefined && this.body.nodes[node.id] !== undefined) {
+              this._performAddEdge(connectFromId, node.id);
+            }
+          }
+        } else this.selectionHandler.unselectAll();
+
         this.body.emitter.emit('_redraw');
       }
 
