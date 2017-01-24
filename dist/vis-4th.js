@@ -4,7 +4,7 @@
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 4.17.6
+ * @version 4.17.7
  * @date    2017-01-09
  *
  * @license
@@ -30403,6 +30403,9 @@ return /******/ (function(modules) { // webpackBootstrap
   };
   Network.prototype.addEdgeMode = function () {
     return this.manipulation.addEdgeMode.apply(this.manipulation, arguments);
+  };
+  Network.prototype.addEdgeModeWithSelectedNode = function () {
+    return this.manipulation.addEdgeModeWithSelectedNode.apply(this.manipulation, arguments);
   };
   Network.prototype.editEdgeMode = function () {
     return this.manipulation.editEdgeMode.apply(this.manipulation, arguments);
